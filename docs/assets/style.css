@@ -1,0 +1,22 @@
+#searchandcity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+#searchButton {
+    margin: 10px;
+}
+
+#forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+#forecast .card {
+    width: 20%;
+    margin: 10px;
+  }
