@@ -1,7 +1,8 @@
 // https://api.openweathermap.org/geo/1.0/direct?q=hackettstown&limit=1&appid=2f41a48f60d6d854be758ad4552fc631
 // https://api.openweathermap.org/data/2.5/forecast?lat=40.8538944&lon=-74.8291638&units=imperial&appid=2f41a48f60d6d854be758ad4552fc631
 
-
+let searches = JSON.parse(localStorage.getItem("searches")) || [];
+let index = 0;
 
 document.getElementById("searchButton").addEventListener("click", function () {
     event.preventDefault();
@@ -11,6 +12,21 @@ document.getElementById("searchButton").addEventListener("click", function () {
         return;
     }
     else {
+        // create and store search history
+        searches.push(city);
+        localStorage.setItem("searches", JSON.stringify(searches));
+        const storedSearches = JSON.parse(localStorage.getItem("searches"));
+        console.log(storedSearches);
+        // display search history
+        document.getElementById("searchHistoryDiv").style.display = "block";
+        var searchList = document.getElementById("searchHistory")
+        var searchListItem = document.createElement("li");
+        searchListItem.setAttribute("class", "list-group-item");
+        searchListItem.setAttribute("id", "searchHistoryItem" + index);
+        searchListItem.textContent = city;
+        searchList.appendChild(searchListItem);
+        index++;
+
         var geoCoderURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=2f41a48f60d6d854be758ad4552fc631';
         fetch(geoCoderURL)
             .then(function (response) {
@@ -35,6 +51,7 @@ document.getElementById("searchButton").addEventListener("click", function () {
                         var weatherIcon = data.list[0].weather[0].icon;
                         var weatherIconURL = 'http://openweathermap.org/img/w/' + weatherIcon + '.png';
                         console.log(weatherIconURL);
+                        document.getElementById("nameofcity").textContent = city;
                         document.getElementById("currentWeatherIcon").setAttribute("src", weatherIconURL);
                         document.getElementById("currentWeatherIcon").setAttribute("alt", weatherDescription);
                         document.getElementById("currentWeatherDescription").textContent = weatherDescription;

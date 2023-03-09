@@ -17,17 +17,19 @@
   </div>
   <div class="col-12">
   <h5>Search for a city</h5>
-  <form>
+  <form id="searchForm">
     <div>
       <input type="text" id="city" placeholder="Enter city">
     </div>
     <button type="submit" id="searchButton">Submit</button>
   </form>
   </div>
-</div>
-  
-  <div style="display: none;" id="currentWeather">
-    <h1>Current Weather</h1>
+  <div id="searchHistoryDiv" class="col-4" style="display: none;">
+  <h5>Recent Searches</h5>
+  <ul id="searchHistory"></ul>
+  </div>
+  <div class="col-4 text-center" style="display: none;" id="currentWeather">
+    <h1 class=" text-uppercase" id="nameofcity"></h1>
     <img id="currentWeatherIcon" src="" alt="">
     <div id="currentWeatherDescription"></div>
     <div id="currentWeatherTemp"></div>
